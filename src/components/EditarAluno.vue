@@ -2,48 +2,8 @@
  <div class="row justify-content-center">
     <div class="col-sm-6">
         <form>
-            <div class="form-group">
-                <label for="username">Nome de Usuário</label>
-                <input type="text" id="username" name="username" 
-                class="form-control" v-model="username" placeholder="Ex. nome.sobrenome">
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" 
-                class="form-control" v-model="email">
-            </div>
-
-            <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" id="password" name="password" 
-                class="form-control" v-model="password">
-            </div>
-            
-            <hr>
-            
-            <div class="form-group">
-                <label for="nome">Nome Completo</label>
-                <input type="nome" id="nome" name="nome" 
-                class="form-control" v-model="nome">
-            </div>
-        
-            <div class="form-group"> 
-                <label for="nascimento">Data de Nascimento</label>
-                <input type="date" class="form-control" name="nascimento" v-model="nascimento">
-            </div>
-            <div class="form-group">
-                <label for="rga">RGA</label>
-                <input type="text" class="form-control" name="rga" placeholder="Ex. 201505100078" v-model="rga">
-            </div>
-            <div class="form-group"> 
-                <label for="cpf">CPF</label>
-                <input type="text" class="form-control" name="cpf" placeholder="Ex. 999.999.999-99" v-model="cpf">
-            </div>
-            <div class="form-group">
-                <label for="rg">RG</label>
-                <input type="text" class="form-control" name="rg" placeholder="RG" v-model="rg">
-            </div>
+            <h1>Editar Aluno</h1>
+         
             <div class="form-group"> 
                 <label for="telefone">Telefone</label>
                 <div class="form-row">
@@ -104,7 +64,15 @@
                 <label for="semestre">Semestre</label>
                 <input type="text" class="form-control" name="semestre" placeholder="Semestre" v-model="semestre">
             </div>
-            <button @click.prevent="register" type="submit" class="btn btn-primary">Cadastrar</button>
+            <div v-if="auth === 'ADMIN'">
+                <button @click.prevent="editAluno" type="submit" class="btn btn-primary">Salvar</button>
+                <router-link to="{name: ADMDash}" class="btn btn-danger">Cancelar</router-link>
+            </div>
+            <div v-else-if="auth === 'COORDENADOR'">
+                 <button @click.prevent="editAluno" type="submit" class="btn btn-primary">Salvar</button>
+                <router-link to="{name: COORDash}" class="btn btn-danger">Cancelar</router-link>
+            </div>
+
         </form>
     </div>
 </div>
@@ -118,21 +86,12 @@
         data(){
             return{
 
-                username:'',
-                email: '',
-                password: '',
-                ////
-                nome: '',
-                nascimento: '',
-                cpf: '',
-                rg: '',
                 rua: '',
                 bairro: '',
                 cidade: '',
                 cep: '',
                 celular: '',
                 fixo: '',
-                rga: '',
                 semestre: '',
                 curso: '',
                 instituicao: '',
@@ -142,49 +101,48 @@
                 instituicoes: [],
                 campuses: [],
                 ///
-                alert: false
+                auth: localStorage.getItem('role')
                 
             }
         },
         methods: {
-            register(){
+            editAluno(){
                 const token = localStorage.getItem('token');
-                axios.post('http://localhost:8000/api/aluno?token=' + token, 
-                //pra autenticar, precisa de mais uma header
-                //essa header só vai dizer pro beck q isso é uma chamada ajax
+                axios.put('http://localhost:8000/api/aluno/' + this.$route.params.id + '?token=' + token, 
+
                     {
-                        username: this.username, 
-                        email: this.email, 
-                        password: this.password,
-                        ////
-                        nome: this.nome,
-                        nascimento: this.nascimento,
-                        cpf: this.cpf,
-                        rg: this.rg,
+                    
                         rua: this.rua,
                         bairro: this.bairro,
                         cidade: this.cidade,
                         cep: this.cep,
                         celular: this.celular,
                         fixo: this.fixo,
-                        rga: this.rga,
                         semestre: this.semestre,
                         curso: this.curso,
                         instituicao: this.instituicao,
-                        campus: this.campus,
+                        campus: this.campus
                     },
                     {headers: {'X-Requested-With': 'XMLHttpRequest'}})
                     .then(
                         (response) => console.log(response),
-                        alert("Cadastrado com sucesso"),
-                        this.$router.push({ name: 'dashboard' })
+                        alert("Editado com sucesso"),
                     )
                     .catch(
-                        (error) => console.log(error)
+                        (error) => console.log(this.role)
                     );
+
+                    if(this.auth === 'ADMIN'){
+                        this.$router.push({ name: 'ADMDash' })
+                    }else if(auth === 'COORDENADOR'){
+                        this.$router.push({ name: 'COORDash' })
+                    }
+                    
             },
+            
              //inst, campus, curso
             loadICC(){
+                
                 const token = localStorage.getItem('token');
                 axios.get('http://localhost:8000/api/aluno/create?token=' + token)
                     .then(response => {
@@ -197,10 +155,6 @@
                         error => console.log(error)
                     );
             }
-        },
-
-        computed: {
-           
         },
 
         mounted(){

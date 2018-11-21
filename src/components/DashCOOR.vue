@@ -5,7 +5,7 @@
                 <h1>Dashboard</h1>
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard</div>
+                    <div class="panel-heading">Dashboard - COOR</div>
                     <div class="panel-body">
                         <router-link to="/">Cadastrar Novo Usuário</router-link>
                         <router-link to="/">Instituições</router-link>

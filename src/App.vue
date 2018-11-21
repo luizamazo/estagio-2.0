@@ -6,7 +6,7 @@
             <router-link to="/">Quotes</router-link> |
             <router-link to="/new-quote">New Quote</router-link> |
             <router-link to="/login">Login</router-link> |
-            <router-link to="/register">Register</router-link> |
+            <router-link to="/novo-aluno">Register</router-link> |
             <router-link to="/logout">Logout</router-link> 
           </div>
         </div>
@@ -20,26 +20,6 @@
   </div>
 </template>
 
-<script>
-//componentes locais
- // import NewQuote from './components/NewQuote.vue';
-
-export default {
-
-  data () {
-    return {
-     
-    }
-  }, 
-  //registra os componentes locais
- // components: {
-      //isso aqui é a tag
-     //   'new-quote': NewQuote
-  //  }
-  
-}
-
-</script>
 
 <style>
   #app{

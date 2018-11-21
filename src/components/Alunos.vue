@@ -28,15 +28,15 @@
                                 <td>{{alu.curso.nome}}</td>
                                 <td>{{alu.semestre}}</td>
                                 <td>
-                                <router-link v-bind:to="'/aluno/' + alu.id" tag="button" class="btn btn-sm btn-primary">Ver Aluno</router-link>
-                                <button class="btn btn-sm btn-warning">Editar</button>
-                                <button class="btn btn-sm btn-danger">Apagar</button>
+                                <router-link v-bind:to="'/aluno/' + alu.id" tag="button" class="btn btn-sm btn-primary">Ver</router-link>
+                                <router-link v-bind:to="'/aluno/edit/' + alu.id" tag="button" class="btn btn-sm btn-warning">Editar</router-link>
+                                <button @click="onDelete" class="btn btn-sm btn-danger">Apagar</button>
                                 </td>
                             </tr>
                         </tbody>
                         </table>
 
-                          <!--edit modal
+                        <!--edit modal
                         <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -56,27 +56,29 @@
                                     
                                     <div class="form-group">
                                         <label for="name">Name</label>
-                                        <input v-model="task.name" type="text" id="name" class="form-control">
+                                        <input v-model="nome" type="text" id="name" class="form-control">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="body">Description</label>
-                                        <input v-model="task.body" type="text" id="body" class="form-control">
+                                        <input v-model="nascimento" type="text" id="body" class="form-control">
                                     </div>
                                     
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button v-on:click="createTasks" type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                -->
+                   fim modal
+                   NÃOTÁ DNDO CERTO ESA MERDA -->
+
                    </div>
                 </div>
                 <div class="panel-footer">
-                    <router-link to="/registerAluno" 
+                    <router-link to="/novo-aluno" 
                         tag="button" class="btn btn-sm btn-success btn-block">Adicionar Novo Aluno</router-link>
                 </div>               
             </div>
@@ -115,7 +117,8 @@
                 instituicoes: [],
                 campuses: [],
                 editAluno: [],
-                errors: []
+                errors: [],
+                id: null
             }
         },
         methods: {
@@ -131,12 +134,21 @@
                         error => console.log(error)
                     );
             },
-            loadUpdateModal(){
-                //usa jquery aqui, acessa o id lá do modal create-modal
-                //isso aqui tem lá na pagina do bootstrap modal
-                $("#create-modal").modal("show");
-            },
-            
+            onDelete(){
+                console.log(this.id)
+                const token = localStorage.getItem('token');
+                //deletar a quote q eu deletei da tela
+                //emit method to emit my own event, é tipo uma verificaçao
+               // this.$emit('quoteDeleted', this.qt.id); //esse vento será colocado lá no loop do for
+                //esse qt é o vetor q to recebendo lá do quotes
+                axios.delete('http://localhost:8000/api/aluno/' + this.id + '?token=' + token)
+                    .then(
+                        response => console.log(response)
+                    )
+                    .catch(
+                        error => console.log(error)
+                    )
+            }
         },
         mounted(){
             this.loadAlunos();
