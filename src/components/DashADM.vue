@@ -7,7 +7,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Dashboard</div>
                     <div class="panel-body">
-                        <router-link to="/registerAluno">Cadastrar Novo Aluno</router-link>
+                        <router-link to="/novo-aluno">Cadastrar Novo Aluno</router-link>
+                         <router-link to="/alunos">Alunos</router-link>
                         <router-link to="/">Instituições</router-link>
                         <router-link to="/">Empresas</router-link>
                         <hr>

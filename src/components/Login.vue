@@ -9,7 +9,7 @@
             </div>
 
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">Senha</label>
                 <input type="password" id="password" name="password" 
                 class="form-control" v-model="password">
             </div>
@@ -46,15 +46,28 @@
                             store.commit('loginUser')
                             const token = response.data.token;
                             const username = response.data.user.name;
+                            const role = response.data.user.role;
                             localStorage.setItem('token', token)
                             localStorage.setItem('username', username)
-                            //redireciona pra dash
-                           this.$router.push({ name: 'dashboard' })
+                            localStorage.setItem('role', role)
+
+                            if(role === 'ADMIN'){
+                                //redireciona pra dash do admin
+                                this.$router.push({ name: 'ADMDash' })
+                            }else if(role === 'COORDENADOR'){
+                                this.$router.push({ name: 'COORDash' })
+                            }else if(role === 'SUPERVISOR'){
+                                this.$router.push({ name: 'SUPERDash' })
+                            }else if(role === 'ALUNO'){
+                                this.$router.push({ name: 'ALUDash' })
+                            }
+                           
                         }
                     )
                     .catch(error => {
                         this.loginError = true
                         console.log(error)
+                        alert('Algo deu ruim')
                     }
                     );
             }

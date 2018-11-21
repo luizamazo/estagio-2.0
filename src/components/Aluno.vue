@@ -4,23 +4,27 @@
               <div v-for="alu in aluno" :key="alu.id">
                 <h1>Nome: {{alu.pessoa.nome}}</h1>
                 <hr>
-                <p>{{alu.pessoa.nascimento}}</p>
-                <p>{{alu.pessoa.cpf}}</p>
-                <p>{{alu.pessoa.rg}}</p>
-                <p>{{alu.endereco.rua}}</p>
-                <p>{{alu.endereco.bairro}}</p>
-                <p>{{alu.endereco.cidade}}</p>
-                <p>{{alu.endereco.cep}}</p>
-                <p>{{alu.telefone.fixo}}</p>
-                <p>{{alu.telefone.celular}}</p>
-                <p>{{alu.rga}}</p>
-                <p>{{alu.instituicao.nome}}</p>
-                <p>{{alu.campus.nome}}</p>
-                <p>{{alu.curso.nome}}</p>
-                <p>{{alu.semestre}}</p>
+                <p>Data de Nascimento: {{alu.pessoa.nascimento}}</p>
+                <p>CPF: {{alu.pessoa.cpf}}</p>
+                <p>RG: {{alu.pessoa.rg}}</p>
+                <p>Rua: {{alu.endereco.rua}}</p>
+                <p>Bairro: {{alu.endereco.bairro}}</p>
+                <p>Cidade: {{alu.endereco.cidade}}</p>
+                <p>CEP: {{alu.endereco.cep}}</p>
+                <p>Telefone Fixo: {{alu.telefone.fixo}}</p>
+                <p>Telefone Celular: {{alu.telefone.celular}}</p>
+                <p>RGA: {{alu.rga}}</p>
+                <p>Instituição: {{alu.instituicao.nome}}</p>
+                <p>Campus: {{alu.campus.nome}}</p>
+                <p>Curso: {{alu.curso.nome}}</p>
+                <p>Semestre: {{alu.semestre}}</p>
             </div>  
              <hr>
         </div>
+        <div class="panel-footer">
+                    <router-link to="/alunos" 
+                        tag="button" class="btn btn-sm btn-danger btn-block">Voltar</router-link>
+        </div>   
         
     </div>
 </template>
@@ -38,7 +42,7 @@
             loadAluno(){
                 const token = localStorage.getItem('token');
                 axios
-                    .get('http://localhost:8000/api/aluno/' + this.$route.params.id+ '?token=' + token)
+                    .get('http://localhost:8000/api/aluno/' + this.$route.params.id + '?token=' + token)
                     .then(response => {
                         this.aluno = response.data.aluno
                         console.log(response);

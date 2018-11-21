@@ -8,6 +8,7 @@
                 <th class="text-center">Ação</th>
                 <th class="text-center">Tipo</th>
                 <th class="text-center">Alvo</th>
+                <th class="text-center">Data</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,15 +18,18 @@
                     <td>{{log.acao}}</td>
                     <td>{{log.tipo}}</td>
                     <td>{{log.alvo}}</td>
+                    <td>{{log.created_at | dateFormat}}</td>
                 </tr>
             </tbody>
-            </table>
             <button @click="deleteLogs" class="btn btn-danger btn-block">Limpar Tudo</button>
+            </table>
+             
     </div>
 </template>
 
 <script>
     import axios from 'axios';
+    import moment from 'moment'
     export default {
         
         data(){
@@ -68,6 +72,15 @@
                     )
             }
         },
+
+        filters:{
+            //n ta funcionando
+            dateFormat: function(value){
+                if (value) {
+                    return moment(String(value)).format('DD/MM/YYYY | hh:mm')
+                }
+            }
+        }, 
 
         mounted() {
             this.loadLogs();
