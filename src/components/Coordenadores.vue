@@ -4,34 +4,34 @@
         <div class="col-md-12">
                 <div class="panel panel-default">
                 <div class="panel-body">
-                     <h3>Alunos Cadastrados</h3>
+                     <h3>Coordenadores Cadastrados</h3>
                    <div class="table-responsive-md">
-                        <table class="table text-center" v-if="alunos.length > 0">
+                        <table class="table text-center" v-if="coordenadores.length > 0">
                         <thead>
                             <tr>
                             <th>#</th>
-                            <th class="text-center">RGA</th>
+                            <th class="text-center">SIAPE</th>
                             <th class="text-center">Nome</th>
                             <th class="text-center">Instituição</th>
                             <th class="text-center">Campus</th>
                             <th class="text-center">Curso</th>
-                            <th class="text-center">Semestre</th>
+                            <th class="text-center">Cargo</th>
                             <th class="text-center">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="alu in alunos" :key="alu.id" :id="alu.id" @alunoDeleted="onAlunoDeleted($event)">
-                                <td>{{alu.id}}</td>
-                                <td>{{alu.rga}}</td>
-                                <td>{{alu.pessoa.nome}}</td>
-                                <td>{{alu.instituicao.nome}}</td>
-                                <td>{{alu.campus.nome}}</td>
-                                <td>{{alu.curso.nome}}</td>
-                                <td>{{alu.semestre}}</td>
+                            <tr v-for="coor in coordenadores" :key="coor.id" :id="coor.id" @coorDeleted="onCoorDeleted($event)">
+                                <td>{{coor.id}}</td>
+                                <td>{{coor.siape}}</td>
+                                <td>{{coor.pessoa.nome}}</td>
+                                <td>{{coor.instituicao.nome}}</td>
+                                <td>{{coor.campus.nome}}</td>
+                                <td>{{coor.curso.nome}}</td>
+                                <td>{{coor.cargo}}</td>
                                 <td>
-                                <router-link v-bind:to="'/aluno/' + alu.id" tag="button" class="btn btn-sm btn-primary">Ver</router-link>
-                                <router-link v-bind:to="'/aluno/edit/' + alu.id" tag="button" class="btn btn-sm btn-warning">Editar</router-link>
-                                <button @click="onDelete(alu.id)" class="btn btn-sm btn-danger">Apagar</button>
+                                <router-link v-bind:to="'/coordenador/' + coor.id" tag="button" class="btn btn-sm btn-primary">Ver</router-link>
+                                <router-link v-bind:to="'/coordenador/edit/' + coor.id" tag="button" class="btn btn-sm btn-warning">Editar</router-link>
+                                <button @click="onDelete(coor.id)" class="btn btn-sm btn-danger">Apagar</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -40,7 +40,7 @@
                    </div>
                 </div>
                 <div class="panel-footer">
-                    <router-link to="/novo-aluno" 
+                    <router-link to="/novo-coordenador" 
                         tag="button" class="btn btn-sm btn-success btn-block">Adicionar Novo Aluno</router-link>
                 </div>               
             </div>
@@ -56,7 +56,6 @@
     export default {
         data(){
             return{
-                alunos: [],
                 /////modal -> edit
                 nome: '',
                 nascimento: '',
@@ -73,22 +72,22 @@
                 curso: '',
                 instituicao: '',
                 campus: '',
-                id: '',
+         
                 ////
                 cursos: [],
-                instituicoes: [],
+                coordenadores: [],
                 campuses: [],
-                editAluno: [],
+
                 errors: [],
             }
         },
         methods: {
-            loadAlunos(){
+            loadCoordenadores(){
                 const token = localStorage.getItem('token');
                 axios
-                    .get('http://localhost:8000/api/aluno?token=' + token)
+                    .get('http://localhost:8000/api/coordenador?token=' + token)
                     .then(response => {
-                        this.alunos = response.data.alunos
+                        this.coordenadores = response.data.coordenadores
                         console.log(response);
                     })
                     .catch(
@@ -98,8 +97,8 @@
             onDelete(id){
                 console.log(this.id)
                 const token = localStorage.getItem('token');
-                this.$emit('alunoDeleted', id);
-                axios.delete('http://localhost:8000/api/aluno/' + id + '?token=' + token)
+                this.$emit('coorDeleted', id);
+                axios.delete('http://localhost:8000/api/coordenador/' + id + '?token=' + token)
                     .then(
                         response => console.log(response)
                     )
@@ -107,18 +106,16 @@
                         error => console.log(error)
                     )
             },
-            onAlunoDeleted(id){
-                //vou pegar index do elemento q foi deletado
-                const position = this.alunos.findIndex((element) => {
-                    //true or false, é esse o elemento q vc quer ou não? se for igual, manda ele
+            onCoorDeleted(id){
+                const position = this.coordenadores.findIndex((element) => {
                     return element.id == id;
                 });
 
-                this.alunos.splice(position, 1);
+                this.coordenadores.splice(position, 1);
             }
         },
         mounted(){
-            this.loadAlunos();
+            this.loadCoordenadores();
         }
     }
 </script>

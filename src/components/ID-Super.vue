@@ -1,0 +1,57 @@
+<template>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h1>Perfil do Supervisor</h1>
+              <div v-for="sup in supervisor" :key="sup.id">
+                <h1>Nome: {{sup.pessoa.nome}}</h1>
+                <hr>
+                <p>Data de Nascimento: {{sup.pessoa.nascimento}}</p>
+                <p>CPF: {{sup.pessoa.cpf}}</p>
+                <p>RG: {{sup.pessoa.rg}}</p>
+                <p>Telefone Fixo: {{sup.telefone.fixo}}</p>
+                <p>Telefone Celular: {{sup.telefone.celular}}</p>
+                <p>Empresa: {{sup.empresa.nome}}</p>
+                <p>Campus: {{sup.campus.nome}}</p>
+                <p>Cargo: {{sup.cargo}}</p>
+                <p>Área: {{sup.area}}</p>
+            </div>  
+             <hr>
+        </div>
+        <div class="panel-footer">
+                    <router-link to="/supervisores" 
+                        tag="button" class="btn btn-sm btn-danger btn-block">Voltar</router-link>
+        </div>   
+        
+    </div>
+</template>
+
+<script>
+    import axios from 'axios';
+    export default {
+        data(){
+            return{
+                supervisor: [],
+            }
+        },
+        methods: {
+
+            loadSupervisores(){
+                const token = localStorage.getItem('token');
+                axios
+                    .get('http://localhost:8000/api/supervisor/' + this.$route.params.id + '?token=' + token)
+                    .then(response => {
+                        this.supervisor = response.data.supervisor
+                        console.log(response);
+                    })
+                    .catch(
+                        error => console.log(error)
+                    );
+            }
+        },
+        created(){
+            this.loadSupervisores();
+        }
+       
+    }
+</script>
+

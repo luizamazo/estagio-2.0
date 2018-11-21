@@ -47,8 +47,10 @@
                             const token = response.data.token;
                             const username = response.data.user.name;
                             const role = response.data.user.role;
+                            const user_id = response.data.user.id;
                             localStorage.setItem('token', token)
-                            localStorage.setItem('username', username)
+                            localStorage.setItem('username', username),
+                            localStorage.setItem('user_id', id)
                             localStorage.setItem('role', role)
 
                             if(role === 'ADMIN'){
