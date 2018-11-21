@@ -75,8 +75,8 @@ const routes = [
 
 const router = new VueRouter({mode: 'history', routes: routes});
 
-/*
-router.beforeEach((to, from, next) => {
+
+/*router.beforeEach((to, from, next) => {
     if(to.meta.requiresAuth){
       const authUser = localStorage.getItem('role')
       if(!authUser || !authUser.token){
@@ -114,6 +114,7 @@ router.beforeEach((to, from, next) => {
       next()
     }
 })
+
 */
 
 new Vue({
