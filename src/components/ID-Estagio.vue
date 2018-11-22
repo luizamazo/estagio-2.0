@@ -1,28 +1,18 @@
 <template>
     <div class="panel panel-default">
-        <div class="panel-heading"><h2>Estágios</h2></div>
+        <div class="panel-heading"><h2>Estágio</h2></div>
         <div class="panel-body">
             <div v-if="estagio.length == 0" class="text-center">
                     <h4> Você ainda não possui estágio :/ </h4>
             </div>
             <div v-else>
                 <div v-for="est in estagio" :key="est.id"> 
-                    <h1>Estágio: {{est.titulo}}</h1>
+                    <h1>{{est.solicitacao.titulo}}</h1>
                     <hr>
-                    <p>Data de Nascimento: {{alu.pessoa.nascimento | dateFormat}}</p>
-                    <p>CPF: {{alu.pessoa.cpf}}</p>
-                    <p>RG: {{alu.pessoa.rg}}</p>
-                    <p>Rua: {{alu.endereco.rua}}</p>
-                    <p>Bairro: {{alu.endereco.bairro}}</p>
-                    <p>Cidade: {{alu.endereco.cidade}}</p>
-                    <p>CEP: {{alu.endereco.cep}}</p>
-                    <p>Telefone Fixo: {{alu.telefone.fixo}}</p>
-                    <p>Telefone Celular: {{alu.telefone.celular}}</p>
-                    <p>RGA: {{alu.rga}}</p>
-                    <p>Instituição: {{alu.instituicao.nome}}</p>
-                    <p>Campus: {{alu.campus.nome}}</p>
-                    <p>Curso: {{alu.curso.nome}}</p>
-                    <p>Semestre: {{alu.semestre}}</p>
+                    <p>Data de Início do Estágio: {{est.solicitacao.estagioInicio | dateFormat}}</p>
+                    <p>Data de Encerramento do Estágio: {{est.solicitacao.estagioFinal | dateFormat}}</p>
+                    <p>Carga Horária: {{est.solicitacao.carga}}</p>
+                    <p>Planejamento de Tarefas: {{est.solicitacao.tarefas}}</p>
                 </div>
             </div>  
              <hr>
@@ -41,7 +31,7 @@
         },
         methods: {
 
-         /*   loadEstagio(){
+          loadEstagio(){
                 const token = localStorage.getItem('token');
                 const aluno_id = localStorage.getItem('aluno_id');
                 axios
@@ -54,7 +44,7 @@
                         error => console.log(error)
                     );
             }
-            */
+            
         },
 
          filters:{

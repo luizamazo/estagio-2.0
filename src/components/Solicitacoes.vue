@@ -62,7 +62,6 @@
                     .then(
                         (response) => console.log(response),
                        
-                       //alert("Solicitação feita com sucesso"),
                     )
                     .catch(
                         (error) => console.log(error)
@@ -71,7 +70,7 @@
                 axios.post('http://localhost:8000/api/estagio/' + id + '?token=' + token, 
                
                     {
-                       status: this.status
+                       soli_id: id
                     },
 
                     {headers: {'X-Requested-With': 'XMLHttpRequest'}})
