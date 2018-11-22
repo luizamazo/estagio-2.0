@@ -5,10 +5,8 @@ import VueFilterDateFormat from 'vue-filter-date-format'
 
 
 import App from './App.vue'
-
 import Login from './components/Login.vue';
 import Logout from './components/Logout.vue'
-
 import ADMDashboard from './components/DashADM.vue';
 import COORDashboard from './components/DashCOOR.vue';
 import SUPERDashboard from './components/DashSUPER.vue';

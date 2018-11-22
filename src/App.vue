@@ -1,23 +1,21 @@
 <template>
   <div id="app">
-    <div class="container ">
-        <div class="row">
-          <div class="col-sm-12">
-            <router-link to="/login">Login</router-link> |
-            <router-link to="/novo-aluno">Register</router-link> |
-            <router-link to="/logout">Logout</router-link> 
-          </div>
-        </div>
-          <hr>
-        <div class="row">
-          <div class="col-sm-12">
+    
+          <nav-bar></nav-bar>
+          <hr>   
             <router-view></router-view>
-          </div>
-        </div>
-    </div>
+            <footer></footer>
   </div>
-</template>
 
+</template>
+<script>
+    import Footer from './components/Footer.vue';   
+    import NavBar from './components/NavBar.vue';
+    export default {
+        name: 'app',
+        components: {NavBar,Footer}
+    }
+</script>
 
 <style>
   #app{

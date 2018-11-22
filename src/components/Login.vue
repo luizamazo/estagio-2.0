@@ -1,11 +1,12 @@
 <template>
+
 <div class="row justify-content-center" >
-    <div class="col-sm-6">
+    <img src="/img/images.png" alt="Usuario">
+    <div class="col-sm-3">
         <form>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" 
-                class="form-control" v-model="email">
+                <input type="email" id="email" name="email" class="form-control" v-model="email">
             </div>
 
             <div class="form-group">
@@ -13,7 +14,8 @@
                 <input type="password" id="password" name="password" 
                 class="form-control" v-model="password">
             </div>
-            <button @click.prevent="login" type="submit" class="btn btn-primary">Login</button>
+            <button @click.prevent="login" type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+            
         </form>
     </div>
 </div>    
