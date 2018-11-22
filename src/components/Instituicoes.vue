@@ -41,7 +41,7 @@
                 </div>
                 <div class="panel-footer">
                     <router-link to="/nova-instituicao" 
-                        tag="button" class="btn btn-sm btn-success btn-block">Adicionar Nova Instituição</router-link>
+                        tag="button" class="btn btn-success btn-lg">Adicionar Nova Instituição</router-link>
                 </div>               
             </div>
         </div>

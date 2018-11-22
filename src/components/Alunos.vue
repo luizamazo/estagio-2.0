@@ -29,7 +29,7 @@
                                 <td>{{alu.curso.nome}}</td>
                                 <td>{{alu.semestre}}</td>
                                 <td>
-                                <router-link v-bind:to="'/aluno/' + alu.id" tag="button" class="btn btn-sm btn-primary">Ver</router-link>
+                                <router-link v-bind:to="'/aluno/' + alu.id" tag="button" class="btn btn-sm btn-success">Ver</router-link>
                                 <router-link v-bind:to="'/aluno/edit/' + alu.id" tag="button" class="btn btn-sm btn-warning">Editar</router-link>
                                 <button @click="onDelete(alu.id)" class="btn btn-sm btn-danger">Apagar</button>
                                 </td>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="panel-footer">
                     <router-link to="/novo-aluno" 
-                        tag="button" class="btn btn-sm btn-success btn-block">Adicionar Novo Aluno</router-link>
+                        tag="button" class="btn btn-lg btn-success">Adicionar Novo Aluno</router-link>
                 </div>               
             </div>
         </div>

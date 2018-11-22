@@ -29,7 +29,7 @@
                                 <td>{{coor.curso.nome}}</td>
                                 <td>{{coor.cargo}}</td>
                                 <td>
-                                <router-link v-bind:to="'/coordenador/' + coor.id" tag="button" class="btn btn-sm btn-primary">Ver</router-link>
+                                <router-link v-bind:to="'/coordenador/' + coor.id" tag="button" class="btn btn-sm btn-success">Ver</router-link>
                                 <router-link v-bind:to="'/coordenador/edit/' + coor.id" tag="button" class="btn btn-sm btn-warning">Editar</router-link>
                                 <button @click="onDelete(coor.id)" class="btn btn-sm btn-danger">Apagar</button>
                                 </td>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="panel-footer">
                     <router-link to="/novo-coordenador" 
-                        tag="button" class="btn btn-sm btn-success btn-block">Adicionar Novo Aluno</router-link>
+                        tag="button" class="btn btn-lg btn-success ">Adicionar Novo Aluno</router-link>
                 </div>               
             </div>
         </div>

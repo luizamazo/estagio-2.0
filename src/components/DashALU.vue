@@ -5,11 +5,11 @@
                 <h1>Dashboard</h1>
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard - ALU</div>
+                    <div class="panel-heading">Painel - Aluno</div>
                     <div class="panel-body">
-                        <router-link to="/">Ver Vagas de Estágio</router-link>
-                        <router-link to="/">Ver Estágios</router-link>
-                        <router-link to="/">Ver notificações sei lá q porra eh essa</router-link>
+                        <router-link class="btn btn-secondary btn-lg active"  to="/">Ver Vagas de Estágio</router-link>
+                        <router-link class="btn btn-secondary btn-lg active" to="/">Ver Estágios</router-link>
+                        <router-link class="btn btn-secondary btn-lg active" to="/">Ver notificações sei lá q porra eh essa</router-link>
 
                     </div>
                 </div>

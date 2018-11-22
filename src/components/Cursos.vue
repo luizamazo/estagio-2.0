@@ -30,7 +30,7 @@
                 </div>
                 <div class="panel-footer">
                     <router-link to="/novo-curso" 
-                        tag="button" class="btn btn-sm btn-success btn-block">Adicionar Novo Curso</router-link>
+                        tag="button" class="btn btn-lg btn-success ">Adicionar Novo Curso</router-link>
                 </div>               
             </div>
         </div>

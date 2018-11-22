@@ -29,7 +29,7 @@
                                 <td>{{emp.email}}</td>
                                 <td>{{emp.telefone}}</td>
                                 <td>
-                                <router-link v-bind:to="'/empresa/' + emp.id" tag="button" class="btn btn-sm btn-primary">Ver</router-link>
+                                <router-link v-bind:to="'/empresa/' + emp.id" tag="button" class="btn btn-success">Ver</router-link>
                                 <router-link v-bind:to="'/empresa/edit/' + emp.id" tag="button" class="btn btn-sm btn-warning">Editar</router-link>
                                 <button @click="onDelete(emp.id)" class="btn btn-sm btn-danger">Apagar</button>
                                 </td>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="panel-footer">
                     <router-link to="/nova-empresa" 
-                        tag="button" class="btn btn-sm btn-success btn-block">Adicionar Nova Empresa</router-link>
+                        tag="button" class="btn btn-success btn-lg">Adicionar Nova Empresa</router-link>
                 </div>               
             </div>
         </div>

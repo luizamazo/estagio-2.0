@@ -41,11 +41,11 @@
             </div>
 
             <div v-if="auth === 'ADMIN'">
-                <button @click.prevent="editInstituicao" type="submit" class="btn btn-primary">Salvar</button>
+                <button @click.prevent="editInstituicao" type="submit" class="btn btn-success">Salvar</button>
                 <router-link to="{name: ADMDash}" class="btn btn-danger">Cancelar</router-link>
             </div>
             <div v-else-if="auth === 'COORDENADOR'">
-                 <button @click.prevent="editInstituicao" type="submit" class="btn btn-primary">Salvar</button>
+                 <button @click.prevent="editInstituicao" type="submit" class="btn btn-success">Salvar</button>
                 <router-link to="{name: COORDash}" class="btn btn-danger">Cancelar</router-link>
             </div>
 
