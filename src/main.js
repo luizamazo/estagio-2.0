@@ -44,8 +44,10 @@ import Alunos from './components/Alunos.vue';
 import Aluno from './components/ID-Aluno.vue';
 import EditarAluno from './components/EditarAluno.vue';
 
-//VAGAS
+//VAGAS & SOLICITAÇÕES
 import Vagas from './components/Vagas.vue';
+import Solicitacoes from './components/Solicitacoes.vue';
+import SolicitacaoAluno from './components/ALU-Solicitacao.vue';
 
 import DeuRuim from './components/DeuRuim.vue';
 
@@ -58,7 +60,7 @@ axios.defaults.headers.common['Authorization'] = token;
 const routes = [
     {path: '', component: Login},
     {path: '/login', name: 'login', component: Login},
-    {path: '/logout', component: Logout},
+    {path: '/logout', name: 'logout', component: Logout},
     {
       path: '/dashboard/adm', name: 'ADMDash', component: ADMDashboard, // ADMIN 
       meta: 
@@ -122,9 +124,11 @@ const routes = [
     {path: '/alunos', name: 'alunos', component: Alunos},
     {path: '/aluno/:id', component: Aluno, props: true},
     {path: '/aluno/edit/:id', component: EditarAluno, props: true},
-    ////VAGAS
+    ////VAGAS & SOLICITAÇÕES
     {path: '/vagas', name: 'vagas', component: Vagas},
-    {path: '/nova-solicitacao', component: NovaSolicitacao, props: true},
+    {path: '/nova-solicitacao/:id', name: 'novasolicitacao', component: NovaSolicitacao, props: true},
+    {path: '/solicitacoes', name: 'solicitacoes', component: Solicitacoes},
+    {path: '/solicitacao', name: 'solicitacao-aluno', component: SolicitacaoAluno},
 
     {path: '*', component: DeuRuim}
 ];

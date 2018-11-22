@@ -7,13 +7,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Painel - Aluno</div>
                     <div class="panel-body">
-                        <router-link class="btn btn-secondary btn-lg active"  to="/">Ver Vagas de Estágio</router-link>
+                        <router-link class="btn btn-secondary btn-lg active" to="/vagas">Ver Vagas de Estágio</router-link>
+                        <router-link class="btn btn-secondary btn-lg active" to="/solicitacao">Ver Solicitações</router-link>
                         <router-link class="btn btn-secondary btn-lg active" to="/">Ver Estágios</router-link>
-                        <router-link class="btn btn-secondary btn-lg active" to="/">Ver notificações sei lá q porra eh essa</router-link>
 
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -28,17 +27,5 @@
                 data: 'nothing'
             }
         },
-        mounted() {
-            axios.get('http://localhost:8000/api/dashboard', {
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('token')
-                }
-            })
-            .then(response => {
-                this.data = response.data.data
-            }).catch(error => {
-
-            })
-        }
     }
 </script>

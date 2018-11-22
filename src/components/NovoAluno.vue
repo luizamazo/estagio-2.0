@@ -145,13 +145,13 @@
                 instituicoes: [],
                 campuses: [],
                 ///
-                auth: localStorage.getItem('role')
                 
             }
         },
         methods: {
             register(){
                 const token = localStorage.getItem('token');
+                const role = localStorage.getItem('role');
                 axios.post('http://localhost:8000/api/aluno?token=' + token, 
                 //pra autenticar, precisa de mais uma header
                 //essa header só vai dizer pro beck q isso é uma chamada ajax
@@ -186,9 +186,9 @@
                         (error) => console.log(this.role)
                     );
 
-                    if(this.auth === 'ADMIN'){
+                    if(this.role == 'ADMIN'){
                         this.$router.push({ name: 'ADMDash' })
-                    }else if(auth === 'COORDENADOR'){
+                    }else if(role == 'COORDENADOR'){
                         this.$router.push({ name: 'COORDash' })
                     }
                     

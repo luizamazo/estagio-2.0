@@ -21,9 +21,13 @@
                             <label for="cpf">CPF</label>
                             <input type="text" class="form-control" name="cpf" placeholder="Ex. 999.999.999-99" v-model="cpf">
                         </div>
+                         <div class="form-group"> 
+                            <label for="rg">RG</label>
+                            <input type="text" class="form-control" name="rg" v-model="rg">
+                        </div>
                         <div class="form-group">
                             <label for="rg">RGA</label>
-                            <input type="text" class="form-control" name="rg" placeholder="RG" v-model="rg">
+                            <input type="text" class="form-control" name="rg" placeholder="RG" v-model="rga">
                         </div>
                         <div class="form-group"> 
                             <label for="telefone">Telefone</label>
@@ -72,37 +76,63 @@
     export default {
         data(){
             return{
-                aluno: [],
+
+                nome: '',
+                nascimento: '',
+                cpf: '',
+                rga: '',
+                rg: '',
+                fixo: '',
+                celular: '',
+                estagioInicio: '',
+                estagioFinal: '',
+                tarefas: '',
+                status: 'PENDENTE'
             }
         },
         methods: {
 
-            loadAluno(){
+            register(){
                 const token = localStorage.getItem('token');
-                axios
-                    .get('http://localhost:8000/api/aluno/' + this.$route.params.id + '?token=' + token)
-                    .then(response => {
-                        this.aluno = response.data.aluno
-                        console.log(response);
-                    })
+                const aluno_id = localStorage.getItem('aluno_id')
+                const vaga_id = this.$route.params.id;
+                const coor_id = localStorage.getItem('cord_id');
+                const super_id = localStorage.getItem('sup_id');
+                console.log(aluno_id)
+                axios.post('http://localhost:8000/api/solicitacao/' + vaga_id + '?token=' + token, 
+               
+                    {
+                       
+                        nome: this.nome,
+                        nascimento: this.nascimento,
+                        cpf: this.cpf,
+                        rg: this.rg,
+                        celular: this.celular,
+                        fixo: this.fixo,
+                        rga: this.rga,
+                        estagioInicio: this.estagioInicio, 
+                        estagioFinal: this.estagioFinal,
+                        tarefas: this.tarefas,
+                        status: this.status,
+                        coor_id: coor_id,
+                        aluno_id: aluno_id,
+                        super_id: super_id
+                    },
+                    {headers: {'X-Requested-With': 'XMLHttpRequest'}})
+                    .then(
+                        (response) => console.log(response),
+                       
+                       alert("Solicitação feita com sucesso"),
+                    )
                     .catch(
-                        error => console.log(error)
+                        (error) => console.log(error)
                     );
+
+                    this.$router.push({ name: 'ALUDash' })
+                   
+                    
             }
         },
-
-         filters:{
-           
-            dateFormat: function(value){
-                if (value) {
-                    return moment(String(value)).format('DD/MM/YYYY')
-                }
-            }
-        }, 
-
-        created(){
-            this.loadAluno();
-        }
        
     }
 </script>

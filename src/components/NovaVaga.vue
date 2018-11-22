@@ -104,7 +104,7 @@
                     );
             }
         },
-        created(){
+        beforeMount(){
                 const role = localStorage.getItem('role');
                 if(role === 'ADMIN'){
                     this.isAdmin = true

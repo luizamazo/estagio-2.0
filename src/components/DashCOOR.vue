@@ -7,9 +7,10 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Painel - Coordenador</div>
                     <div class="panel-body con">
-                        <router-link class="btn btn-secondary btn-lg active" to="/">Cadastrar Novo Usuário</router-link>
-                        <router-link class="btn btn-secondary btn-lg active" to="/">Instituições</router-link>
-                        <router-link class="btn btn-secondary btn-lg active" to="/">Empresas</router-link>
+                        <router-link class="btn btn-secondary btn-lg active" to="/novo-aluno">Cadastrar Novo Usuário</router-link>
+                        <router-link class="btn btn-secondary btn-lg active" to="/instituicoes">Instituições</router-link>
+                        <router-link class="btn btn-secondary btn-lg active" to="/empresas">Empresas</router-link>
+                        <router-link class="btn btn-secondary btn-lg active" to="/solicitacoes">Solicitações de Estágio</router-link>
 
                     </div>
                 </div>
@@ -25,20 +26,11 @@
     export default {
         data() {
             return {
-                data: 'nothing'
+               
             }
         },
         mounted() {
-            axios.get('http://localhost:8000/api/dashboard', {
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('token')
-                }
-            })
-            .then(response => {
-                this.data = response.data.data
-            }).catch(error => {
-
-            })
+           
         }
     }
 </script>

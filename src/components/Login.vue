@@ -64,11 +64,11 @@
                                 this.$router.push({ name: 'COORDash' })
                             }else if(role === 'SUPERVISOR'){
                                 const super_id = response.data.super_id;
-                                localStorage.setItem('coor_id', coor_id);
+                                localStorage.setItem('super_id', super_id);
                                 this.$router.push({ name: 'SUPERDash' })
                             }else if(role === 'ALUNO'){
                                 const aluno_id = response.data.aluno_id;
-                                localStorage.setItem('coor_id', coor_id);
+                                localStorage.setItem('aluno_id', aluno_id);
                                 this.$router.push({ name: 'ALUDash' })
                             }
                         }
