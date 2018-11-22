@@ -5,13 +5,13 @@
             <h1>Editar Empresa</h1>
          
             <div class="form-group">
-                <label for="nome">Razão Social</label>
-                <input type="text" id="nome" name="razaoSocial" 
-                class="form-control" v-model="nome">
+                <label for="razaoSocial">Razão Social</label>
+                <input type="text" id="razaoSocial" name="razaoSocial" 
+                class="form-control" v-model="razaoSocial">
             </div>
             <div class="form-group">
                 <label for="contato">Ramo</label>
-                <input type="text" class="form-control" name="contato" v-model="contato">
+                <input type="text" class="form-control" name="ramo" v-model="ramo">
             </div>
             <div class="form-group">
                 <label for="contato">Telefone</label>
@@ -70,7 +70,7 @@
 
                 representante: '',
                 ramo: '',
-                nome: '',
+                razaoSocial: '',
                 contato: '',
                 email: '',
                 site: '',
@@ -84,20 +84,22 @@
             }
         },
         methods: {
-            editInstituicao(){
+            editEmpresa(){
                 const token = localStorage.getItem('token');
                 axios.put('http://localhost:8000/api/empresa/' + this.$route.params.id + '?token=' + token, 
 
                     {
                     
-                        nome: this.nome,
+                        razaoSocial: this.razaoSocial,
+                        ramo: this.ramo,
                         contato: this.contato,
                         email: this.email,
                         site: this.site,
                         rua: this.rua,
                         bairro: this.bairro,
                         cidade: this.cidade,
-                        cep: this.cep
+                        cep: this.cep,
+                        representante: this.representante
                         
                     },
                     {headers: {'X-Requested-With': 'XMLHttpRequest'}})
@@ -117,17 +119,6 @@
                     
             },
    
-            getEditInstituicao(){
-                
-                const token = localStorage.getItem('token');
-                axios.get('http://localhost:8000/api/empresa/create?token=' + token)
-                    .then(response => {
-                        console.log(response)
-                    })
-                    .catch(
-                        error => console.log(error)
-                    );
-            }
         },
 
     

@@ -7,9 +7,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Dashboard - ALU</div>
                     <div class="panel-body">
-                        <router-link to="/">Cadastrar Novo Usuário</router-link>
-                        <router-link to="/">Instituições</router-link>
-                        <router-link to="/">Empresas</router-link>
+                        <router-link to="/">Ver Vagas de Estágio</router-link>
+                        <router-link to="/">Ver Estágios</router-link>
+                        <router-link to="/">Ver notificações sei lá q porra eh essa</router-link>
 
                     </div>
                 </div>

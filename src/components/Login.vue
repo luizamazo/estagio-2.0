@@ -49,9 +49,9 @@
                             const role = response.data.user.role;
                             const user_id = response.data.user.id;
                             localStorage.setItem('token', token)
-                            localStorage.setItem('username', username),
-                            localStorage.setItem('user_id', id)
-                            localStorage.setItem('role', role)
+                            localStorage.setItem('username',  response.data.user.name),
+                            localStorage.setItem('user_id', response.data.user.id)
+                            localStorage.setItem('role', response.data.user.role)
 
                             if(role === 'ADMIN'){
                                 //redireciona pra dash do admin

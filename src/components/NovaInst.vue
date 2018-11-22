@@ -95,7 +95,7 @@
         methods: {
             register(){
                 const token = localStorage.getItem('token');
-                axios.post('http://localhost:8000/api/aluno?token=' + token, 
+                axios.post('http://localhost:8000/api/instituicao?token=' + token, 
                
                     {
                         nome: this.nome,

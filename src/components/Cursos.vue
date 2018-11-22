@@ -4,8 +4,8 @@
         <div class="col-md-12">
                 <div class="panel panel-default">
                 <div class="panel-body">
-                     <h3>Cursos Cadastrados</h3>
                    <div class="table-responsive-md">
+                           <h3>Cursos Cadastrados</h3>
                         <table class="table text-center" v-if="cursos.length > 0">
                         <thead>
                             <tr>
@@ -20,7 +20,7 @@
                                 <td>{{cur.id}}</td>
                                 <td>{{cur.nome}}</td>
                                 <td>
-                                <button @click="onDelete(sup.id)" class="btn btn-sm btn-danger">Apagar</button>
+                                <button @click="onDelete(cur.id)" class="btn btn-sm btn-danger">Apagar</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -43,15 +43,14 @@
 <script>
     import axios from 'axios';
     export default {
+        props: ['inst_id'],
         data(){
             return{
                 curso: '',
                 instituicao: '',
                 campus: '',
-         
                 ////
                 cursos: [],
-
                 errors: [],
             }
         },
@@ -59,7 +58,7 @@
             loadCursos(){
                 const token = localStorage.getItem('token');
                 axios
-                    .get('http://localhost:8000/api/curso?token=' + token)
+                    .get('http://localhost:8000/api/instituicao/' + this.inst_id + '?token=' + token)
                     .then(response => {
                         this.cursos = response.data.cursos
                         console.log(response);
@@ -69,7 +68,7 @@
                     );
             },
             onDelete(id){
-                console.log(this.id)
+    
                 const token = localStorage.getItem('token');
                 this.$emit('cursoDeleted', id);
                 axios.delete('http://localhost:8000/api/curso/' + id + '?token=' + token)

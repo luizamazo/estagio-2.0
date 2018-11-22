@@ -5,7 +5,7 @@
               <div v-for="cor in coordenador" :key="cor.id">
                 <h1>Nome: {{cor.pessoa.nome}}</h1>
                 <hr>
-                <p>Data de Nascimento: {{cor.pessoa.nascimento}}</p>
+                <p>Data de Nascimento: {{cor.pessoa.nascimento | dateFormat}}</p>
                 <p>CPF: {{cor.pessoa.cpf}}</p>
                 <p>RG: {{cor.pessoa.rg}}</p>
                
@@ -29,6 +29,7 @@
 
 <script>
     import axios from 'axios';
+    import moment from 'moment'
     export default {
         data(){
             return{
@@ -50,6 +51,14 @@
                     );
             }
         },
+        filters:{
+            
+            dateFormat: function(value){
+                if (value) {
+                    return moment(String(value)).format('DD/MM/YYYY')
+                }
+            }
+        }, 
         created(){
             this.loadCoordenador();
         }
