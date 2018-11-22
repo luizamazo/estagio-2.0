@@ -49,6 +49,10 @@
                             <label for="estagioFinal">Data de Encerramento</label>
                             <input type="date" class="form-control" name="estagioFinal" v-model="estagioFinal">
                         </div>
+                        <div class="form-group"> 
+                            <label for="carga">Carga Horária</label>
+                            <input type="text" class="form-control" name="carga" v-model="carga">
+                        </div>
                         <div class="form-group">
                             <label for="tarefas">Planejamento de tarefas</label>
                             <textarea class="form-control" id="tarefas" rows="5" v-model="tarefas"></textarea>
@@ -87,6 +91,7 @@
                 estagioInicio: '',
                 estagioFinal: '',
                 tarefas: '',
+                carga: '',
                 status: 'PENDENTE'
             }
         },
@@ -116,7 +121,8 @@
                         status: this.status,
                         coor_id: coor_id,
                         aluno_id: aluno_id,
-                        super_id: super_id
+                        super_id: super_id,
+                        carga: this.carga
                     },
                     {headers: {'X-Requested-With': 'XMLHttpRequest'}})
                     .then(

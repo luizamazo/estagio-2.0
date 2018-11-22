@@ -7,10 +7,17 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Painel - Administrador</div>
                     <div class="panel-body">
+                        
+                        <router-link class="btn btn-secondary btn-lg active" to="/novo-coordenador">Cadastrar Novo Coordenador</router-link>
+                        <router-link class="btn btn-secondary btn-lg active" to="/novo-supervisor">Cadastrar Novo Supervisor</router-link>
                         <router-link class="btn btn-secondary btn-lg active" to="/novo-aluno">Cadastrar Novo Aluno</router-link>
-                         <router-link class="btn btn-secondary btn-lg active" to="/alunos">Alunos</router-link>
-                        <router-link class="btn btn-secondary btn-lg active" to="/">Instituições</router-link>
-                        <router-link class="btn btn-secondary btn-lg active" to="/">Empresas</router-link>
+                        <router-link class="btn btn-secondary btn-lg active" to="/instituicoes">Instituições</router-link>
+                        <router-link class="btn btn-secondary btn-lg active" to="/empresas">Empresas</router-link>
+                        <router-link class="btn btn-secondary btn-lg active" to="/coordenadores">Coordenadores</router-link>
+                        <router-link class="btn btn-secondary btn-lg active" to="/supervisores">Supervisores</router-link>
+                        <router-link class="btn btn-secondary btn-lg active" to="/alunos">Alunos</router-link>
+              
+                        
                         <hr>
                         <logs-table></logs-table>
                     </div>

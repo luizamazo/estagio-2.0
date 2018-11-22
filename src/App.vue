@@ -4,10 +4,9 @@
         <div class="row">  
           <div class="col-sm-12">
              <nav-bar></nav-bar>
-           <h1> {{username}}</h1>
           </div>
         </div>
-          <hr>
+      
         <div class="row">
           <div class="col-sm-12">
             <router-view></router-view>
@@ -23,13 +22,13 @@ import NavBar from './components/NavBar.vue';
 export default {
     data(){
       return{
-        username: ''
+      
       }
     },
     components:{ 'nav-bar': NavBar},
     created(){
-      const role = localStorage.getItem('username');
-      this.username = role
+    
+      
     }
 }
 </script>

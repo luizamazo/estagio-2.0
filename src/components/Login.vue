@@ -54,6 +54,7 @@
                             localStorage.setItem('username',  response.data.user.name),
                             localStorage.setItem('user_id', response.data.user.id)
                             localStorage.setItem('role', response.data.user.role)
+                            localStorage.setItem('isLogged', true)
 
                             if(role === 'ADMIN'){
                                 //redireciona pra dash do admin

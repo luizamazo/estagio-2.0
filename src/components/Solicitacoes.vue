@@ -66,8 +66,20 @@
                     .catch(
                         (error) => console.log(error)
                     );
+                
+                axios.post('http://localhost:8000/api/estagio/' + id + '?token=' + token, 
+               
+                    {
+                       status: this.status
+                    },
 
-                    //this.$router.push({ name: 'COORDash' })
+                    {headers: {'X-Requested-With': 'XMLHttpRequest'}})
+                    .then(
+                        (response) => console.log(response),
+                    )
+                    .catch(
+                        (error) => console.log(error)
+                    );   
             },
 
             onDenyRequest(id){

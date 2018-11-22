@@ -8,9 +8,9 @@
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ">
                   <router-link class="nav-item nav-link" to="/login">Login</router-link>
-                  <router-link class="nav-item nav-link" to="/novo-aluno">Register</router-link>
-                  <router-link class="nav-item nav-link" to="/logout">Logout</router-link> 
-                                 
+                <!--  <div v-if="isLogged == true">-->
+                     <router-link class="nav-item nav-link" to="/logout">Logout</router-link> 
+                <!--  </div> -->
                 </div>
               </div>
             </nav>
@@ -20,11 +20,14 @@
     module.exports = {
         data(){
             return {
-              
+                isLogged: ''
             }
         },
-        methods: {
-
+        created(){
+          const isLogged = localStorage.getItem('isLogged');
+          console.log(isLogged)
+         
+         // this.isLogged = isLogged
         }
     }
 </script>
