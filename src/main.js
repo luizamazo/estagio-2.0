@@ -21,6 +21,7 @@ import NovoCoordenador from './components/NovoCoor.vue';
 import NovoSupervisor from './components/NovoSuper.vue';
 import NovoAluno from './components/NovoAluno.vue';
 import NovaVaga from './components/NovaVaga.vue';
+import NovoCampus from './components/NovoCampus.vue';
 //INSTITUIÇÕES
 import Instituicoes from './components/Instituicoes.vue';
 import Instituicao from './components/ID-Inst.vue';
@@ -42,6 +43,9 @@ import Alunos from './components/Alunos.vue';
 import Aluno from './components/ID-Aluno.vue';
 import EditarAluno from './components/EditarAluno.vue';
 
+//VAGAS
+import Vagas from './components/Vagas.vue';
+
 import DeuRuim from './components/DeuRuim.vue';
 
 Vue.use(VueFilterDateFormat)
@@ -55,7 +59,7 @@ const routes = [
     {path: '/login', name: 'login', component: Login},
     {path: '/logout', component: Logout},
     {
-      path: '/dashboard', name: 'ADMDash', component: ADMDashboard, // ADMIN 
+      path: '/dashboard/adm', name: 'ADMDash', component: ADMDashboard, // ADMIN 
       meta: 
       {
         requiresAuth: true, adminAuth: true, coorAuth: true, 
@@ -63,7 +67,7 @@ const routes = [
       }
     },
     {
-      path: '/dashboard', name: 'COORDash', component: COORDashboard, //COORDENADOR
+      path: '/dashboard/coordenador', name: 'COORDash', component: COORDashboard, //COORDENADOR
       meta: 
       {
         requiresAuth: true, adminAuth: false, coorAuth: true, 
@@ -71,7 +75,7 @@ const routes = [
       }
     },
     {
-      path: '/dashboard', name: 'SUPERDash', component: SUPERDashboard, //SUPER
+      path: '/dashboard/supervisor', name: 'SUPERDash', component: SUPERDashboard, //SUPER
       meta:
       {
         requiresAuth: true, adminAuth: false, coorAuth: false,
@@ -79,7 +83,7 @@ const routes = [
       }
     },
     {
-      path: '/dashboard', name: 'ALUDash', component: ALUDashboard, //ALUNO
+      path: '/dashboard/aluno', name: 'ALUDash', component: ALUDashboard, //ALUNO
       meta:
       {
         requiresAuth: true, adminAuth: false, coorAuth: false,
@@ -96,6 +100,7 @@ const routes = [
     {path: '/novo-supervisor', component: NovoSupervisor},
     {path: '/novo-aluno', component: NovoAluno},
     {path: '/nova-vaga', component: NovaVaga},
+    {path: '/novo-campus', component: NovoCampus},
     //INSTITUIÇÕES
     {path: '/instituicoes', component: Instituicoes},
     {path: '/instituicao/:id', component: Instituicao, props: true},
@@ -116,7 +121,8 @@ const routes = [
     {path: '/alunos', component: Alunos},
     {path: '/aluno/:id', component: Aluno, props: true},
     {path: '/aluno/edit/:id', component: EditarAluno, props: true},
- 
+    ////VAGAS
+    {path: '/vagas', component: Vagas},
 
     {path: '*', component: DeuRuim}
 ];

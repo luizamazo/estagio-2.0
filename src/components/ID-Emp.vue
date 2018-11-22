@@ -5,6 +5,7 @@
               <div v-for="emp in empresa" :key="emp.id">
                 <h1>Nome: {{emp.nome}}</h1>
                 <hr>
+                <p>Representante: {{emp.representante}}</p>
                 <p>Ramo: {{emp.ramo}}</p>
                 <p>CNPJ: {{emp.cnpj}}</p>
                 <p>Telefone: {{emp.telefone}}</p>

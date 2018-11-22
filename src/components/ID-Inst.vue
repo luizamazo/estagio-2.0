@@ -10,6 +10,7 @@
                 <p>Email: {{inst.email}}</p>
                 <p>Site: {{inst.site}}</p>
                 <p>Tipo: {{inst.tipo}}</p>
+                <p>Campus: {{campus}}</p>
                 <p>Endereço: Rua {{inst.endereco.rua}}, Bairro {{inst.endereco.bairro}}</p>
                 <p>Cidade: {{inst.endereco.cidade}}</p>
                 <p>CEP: {{inst.endereco.cep}}</p>
@@ -20,18 +21,31 @@
                     <router-link to="/instituicoes" 
                         tag="button" class="btn btn-sm btn-danger btn-block">Voltar</router-link>
         </div>   
-        
+        <hr>
+        <h1>Cursos</h1>
+        <div v-if="cursos.length == 0" class="text-center">
+            <h4> Ainda não há nenhum curso cadastrado para esta instituição :/ </h4>
+        </div>
+        <div v-else>
+            <cursos :inst_id="inst_id"></cursos>
+        </div>
     </div>
 </template>
 
 <script>
     import axios from 'axios';
+    import Cursos from './Cursos.vue';
+
     export default {
         data(){
             return{
                 instituicao: [],
+                campus: '',
+                cursos: [],
+                inst_id: this.$route.params.id
             }
         },
+        components: {'cursos': Cursos},
         methods: {
 
             loadInstituicao(){
@@ -39,8 +53,10 @@
                 axios
                     .get('http://localhost:8000/api/instituicao/' + this.$route.params.id + '?token=' + token)
                     .then(response => {
-                        this.instituicao = response.data.instituicao
-                        console.log(response);
+                        this.instituicao = response.data.instituicao,
+                        this.campus = response.data.campus,
+                        this.cursos = response.data.cursos
+                        console.log(this.inst_id);
                     })
                     .catch(
                         error => console.log(error)

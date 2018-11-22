@@ -5,7 +5,7 @@
               <div v-for="sup in supervisor" :key="sup.id">
                 <h1>Nome: {{sup.pessoa.nome}}</h1>
                 <hr>
-                <p>Data de Nascimento: {{sup.pessoa.nascimento}}</p>
+                <p>Data de Nascimento: {{sup.pessoa.nascimento | dateFormat}}</p>
                 <p>CPF: {{sup.pessoa.cpf}}</p>
                 <p>RG: {{sup.pessoa.rg}}</p>
                 <p>Telefone Fixo: {{sup.telefone.fixo}}</p>
@@ -27,6 +27,7 @@
 
 <script>
     import axios from 'axios';
+    import moment from 'moment'
     export default {
         data(){
             return{
@@ -48,6 +49,14 @@
                     );
             }
         },
+        filters:{
+           
+            dateFormat: function(value){
+                if (value) {
+                    return moment(String(value)).format('DD/MM/YYYY')
+                }
+            }
+        }, 
         created(){
             this.loadSupervisores();
         }

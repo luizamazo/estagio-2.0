@@ -4,7 +4,7 @@
               <div v-for="alu in aluno" :key="alu.id">
                 <h1>Nome: {{alu.pessoa.nome}}</h1>
                 <hr>
-                <p>Data de Nascimento: {{alu.pessoa.nascimento}}</p>
+                <p>Data de Nascimento: {{alu.pessoa.nascimento | dateFormat}}</p>
                 <p>CPF: {{alu.pessoa.cpf}}</p>
                 <p>RG: {{alu.pessoa.rg}}</p>
                 <p>Rua: {{alu.endereco.rua}}</p>
@@ -31,6 +31,7 @@
 
 <script>
     import axios from 'axios';
+    import moment from 'moment'
     export default {
         data(){
             return{
@@ -52,6 +53,16 @@
                     );
             }
         },
+
+         filters:{
+           
+            dateFormat: function(value){
+                if (value) {
+                    return moment(String(value)).format('DD/MM/YYYY')
+                }
+            }
+        }, 
+
         created(){
             this.loadAluno();
         }

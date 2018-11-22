@@ -7,7 +7,7 @@
             <div class="form-group">
                 <label for="razao">Razão Social</label>
                 <input type="text" id="razao" name="razaoSocial" 
-                class="form-control" v-model="nome">
+                class="form-control" v-model="razaoSocial">
             </div>
             <div class="form-group">
                 <label for="ramo">Ramo</label>
@@ -65,7 +65,7 @@
         data(){
             return{
 
-                nome: '',
+                razaoSocial: '',
                 ramo: '',
                 cnpj: '',
                 contato: '',
@@ -84,10 +84,10 @@
         methods: {
             register(){
                 const token = localStorage.getItem('token');
-                axios.post('http://localhost:8000/api/aluno?token=' + token, 
+                axios.post('http://localhost:8000/api/empresa?token=' + token, 
               
                     {
-                        nome: this.nome,
+                        razaoSocial: this.razaoSocial,
                         ramo: this.ramo,
                         cnpj: this.cnpj,
                         contato: this.contato,

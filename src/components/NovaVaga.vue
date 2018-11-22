@@ -19,7 +19,6 @@
                 <label for="area">Área</label>
                 <input type="text" class="form-control" name="area" v-model="area">
             </div>
-         
             <div class="form-group"> 
                 <label for="empresa">Empresa</label>
                     <select class="custom-select" name="empresa" v-model="empresa">
@@ -34,9 +33,13 @@
                     <select class="custom-select" name="supervisor" v-model="supervisor">
                         <option value="" disabled selected>Selecione um supervisor</option>
                         <option v-for="sup in supervisores" :key="sup.id" :value="sup.id">
-                            {{sup.nome}}
+                            {{sup.pessoa.nome}}
                         </option>
                     </select>
+            </div>
+            <div class="form-group">
+                <label for="requisitos">Requisitos</label>
+                <textarea class="form-control" id="requisitos" rows="3" v-model="requisitos"></textarea>
             </div>
             <button @click.prevent="register" type="submit" class="btn btn-primary">Cadastrar</button>
             <router-link to="/dashboard" class="btn btn-danger">Cancelar</router-link>
@@ -57,30 +60,32 @@
                 area: '',
                 empresa: '',
                 supervisor: '',
+                requisitos: '',
                 ////
                 supervisores: [],
                 empresas: [],
                 ///
-                user_id: localStorage.getItem('user_id'),
-                auth: localStorage.getItem('role')
                 
             }
         },
         methods: {
             register(){
                 const token = localStorage.getItem('token');
+                const user_id = localStorage.getItem('user_id');
+
                 axios.post('http://localhost:8000/api/vaga?token=' + token, 
                     {
                         titulo: this.titulo,
                         area: this.area,
                         empresa: this.empresa,
                         supervisor: this.supervisor,
-                        user_id: this.user_id
+                        coordenador: user_id,
+                        requisitos: this.requisitos
                     },
                     {headers: {'X-Requested-With': 'XMLHttpRequest'}})
                     .then(
                         (response) => console.log(response),
-                        alert("Cadastrado com sucesso"),
+                        //alert("Cadastrado com sucesso"),
                     )
                     .catch(
                         (error) => console.log(this.role)
