@@ -3,13 +3,7 @@
     <div class="col-sm-6">
         <form>
             <h1>Cadastro de Vaga</h1>
-            <!--
-            <div class="form-group">
-                <label for="username">Nome de Usuário</label>
-                <input type="text" id="username" name="username" 
-                class="form-control" v-model="username" placeholder="Ex. nome.sobrenome">
-            </div> 
-            -->
+
             <div class="form-group">
                 <label for="titulo">Título</label>
                 <input type="titulo" id="titulo" name="titulo" 
@@ -64,6 +58,8 @@
                 ////
                 supervisores: [],
                 empresas: [],
+                isAdmin: false,
+                isCoor: false
                 ///
                 
             }
@@ -79,8 +75,9 @@
                         area: this.area,
                         empresa: this.empresa,
                         supervisor: this.supervisor,
-                        coordenador: user_id,
-                        requisitos: this.requisitos
+                        isAdmin: this.isAdmin,
+                        requisitos: this.requisitos,
+                        coordenador: user_id
                     },
                     {headers: {'X-Requested-With': 'XMLHttpRequest'}})
                     .then(
@@ -91,11 +88,7 @@
                         (error) => console.log(this.role)
                     );
 
-                    if(this.auth === 'ADMIN'){
-                        this.$router.push({ name: 'ADMDash' })
-                    }else if(auth === 'COORDENADOR'){
-                        this.$router.push({ name: 'COORDash' })
-                    }
+                    this.$router.push({ name: 'vagas' })
             },
          
             loadES(){
@@ -111,7 +104,14 @@
                     );
             }
         },
-        
+        created(){
+                const role = localStorage.getItem('role');
+                if(role === 'ADMIN'){
+                    this.isAdmin = true
+                }else if(role === 'COORDENADOR'){
+                    isCoor = true
+                }
+        },
         mounted(){
             this.loadES();
         }

@@ -1,7 +1,7 @@
 <template>
     <div class="panel panel-default">
+        <div class="panel-heading"><h2>Perfil do Coordenador</h2></div>
         <div class="panel-body">
-            <h1>Perfil do Coordenador</h1>
               <div v-for="cor in coordenador" :key="cor.id">
                 <h1>Nome: {{cor.pessoa.nome}}</h1>
                 <hr>

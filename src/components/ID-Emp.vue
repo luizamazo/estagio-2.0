@@ -1,5 +1,6 @@
 <template>
     <div class="panel panel-default">
+        <div class="panel-heading"><h2>Perfil da Empresa</h2></div>
         <div class="panel-body">
             <h1>Perfil da Empresa</h1>
               <div v-for="emp in empresa" :key="emp.id">

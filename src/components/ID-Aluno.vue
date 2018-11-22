@@ -1,5 +1,6 @@
 <template>
     <div class="panel panel-default">
+        <div class="panel-heading"><h2>Perfil do Aluno</h2></div>
         <div class="panel-body">
               <div v-for="alu in aluno" :key="alu.id">
                 <h1>Nome: {{alu.pessoa.nome}}</h1>

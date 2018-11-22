@@ -105,7 +105,8 @@
                     )
                     .catch(
                         error => console.log(error)
-                    )
+                    );
+                 this.$router.push({ name: 'alunos' })
             },
             onAlunoDeleted(id){
                 //vou pegar index do elemento q foi deletado

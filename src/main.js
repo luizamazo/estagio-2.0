@@ -24,6 +24,7 @@ import NovoSupervisor from './components/NovoSuper.vue';
 import NovoAluno from './components/NovoAluno.vue';
 import NovaVaga from './components/NovaVaga.vue';
 import NovoCampus from './components/NovoCampus.vue';
+import NovaSolicitacao from './components/NovaSolicitacao.vue';
 //INSTITUIÇÕES
 import Instituicoes from './components/Instituicoes.vue';
 import Instituicao from './components/ID-Inst.vue';
@@ -104,27 +105,28 @@ const routes = [
     {path: '/nova-vaga', component: NovaVaga},
     {path: '/novo-campus', component: NovoCampus},
     //INSTITUIÇÕES
-    {path: '/instituicoes', component: Instituicoes},
+    {path: '/instituicoes', name: 'instituicoes', component: Instituicoes},
     {path: '/instituicao/:id', component: Instituicao, props: true},
     {path: '/instituicao/edit/:id', component: EditarInstituicao, props: true},
     //EMPRESAS
-    {path: '/empresas', component: Empresas},
+    {path: '/empresas', name: 'empresas', component: Empresas},
     {path: '/empresa/:id', component: Empresa, props: true},
     {path: '/empresa/edit/:id', component: EditarEmpresa, props: true},
     ///COORDENADORES
-    {path: '/coordenadores', component: Coordenadores},
+    {path: '/coordenadores', name: 'coordenadores', component: Coordenadores},
     {path: '/coordenador/:id', component: Coordenador, props: true},
     {path: '/coordenador/edit/:id', component: EditarCoordenador, props: true},
     ///SUPERVISORES
-    {path: '/supervisores', component: Supervisores},
+    {path: '/supervisores', name: 'supervisores', component: Supervisores},
     {path: '/supervisor/:id', component: Supervisor, props: true},
     {path: '/supervisor/edit/:id', component: EditarSupervisor, props: true},
     //////ALUNOS
-    {path: '/alunos', component: Alunos},
+    {path: '/alunos', name: 'alunos', component: Alunos},
     {path: '/aluno/:id', component: Aluno, props: true},
     {path: '/aluno/edit/:id', component: EditarAluno, props: true},
     ////VAGAS
-    {path: '/vagas', component: Vagas},
+    {path: '/vagas', name: 'vagas', component: Vagas},
+    {path: '/nova-solicitacao', component: NovaSolicitacao, props: true},
 
     {path: '*', component: DeuRuim}
 ];
