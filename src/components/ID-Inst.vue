@@ -1,5 +1,6 @@
 <template>
     <div class="panel panel-default">
+        <div class="panel-heading"><h2>Perfil da Instituição</h2></div>
         <div class="panel-body">
             <h1>Perfil do Instituição</h1>
               <div v-for="inst in instituicao" :key="inst.id">

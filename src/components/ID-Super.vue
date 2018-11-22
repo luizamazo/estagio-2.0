@@ -1,7 +1,7 @@
 <template>
     <div class="panel panel-default">
+        <div class="panel-heading"><h2>Perfil do Supervisor</h2></div>
         <div class="panel-body">
-            <h1>Perfil do Supervisor</h1>
               <div v-for="sup in supervisor" :key="sup.id">
                 <h1>Nome: {{sup.pessoa.nome}}</h1>
                 <hr>
