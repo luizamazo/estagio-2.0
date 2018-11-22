@@ -25,7 +25,7 @@
         },
         created(){
           const isLogged = localStorage.getItem('isLogged');
-          console.log(isLogged)
+          
          
          // this.isLogged = isLogged
         }

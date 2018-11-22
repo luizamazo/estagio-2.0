@@ -10,7 +10,7 @@
                         <router-link class="btn btn-secondary btn-lg active" to="/vagas">Ver Vagas de Estágio</router-link>
                         <router-link class="btn btn-secondary btn-lg active" to="/solicitacao">Ver Solicitações Feitas</router-link>
                         <router-link class="btn btn-secondary btn-lg active" to="/">Ver Estágios</router-link>
-
+                        <aluno></aluno>
                     </div>
                 </div>
             </div>
@@ -20,12 +20,16 @@
 
 <script>
     import axios from 'axios';
-
+    import Aluno from './ID-Aluno.vue';
     export default {
         data() {
             return {
-                data: 'nothing'
+               aluno_id: null
             }
         },
+        components: {'aluno': Aluno},
+        created(){
+         
+        }
     }
 </script>
