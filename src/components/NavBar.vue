@@ -8,11 +8,13 @@
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ">
                   <router-link class="nav-item nav-link" to="/login">Login</router-link>
-                <!--  <div v-if="isLogged == true">-->
-                     <router-link class="nav-item nav-link" to="/logout">Logout</router-link> 
-                <!--  </div> -->
                 </div>
               </div>
+              <!--  <div v-if="isLogged == true">-->
+              <form class="navbar-nav form-inline my-2 my-lg-0">
+                <router-link class="nav-item nav-link" to="/logout">Logout</router-link> 
+              </form>
+              <!--  </div> -->
             </nav>
 
 </template>
