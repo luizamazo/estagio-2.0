@@ -2,7 +2,7 @@
  <div class="row justify-content-center">
     <div class="col-sm-6">
         <form>
-            <h1>Cadastro de Aluno</h1>
+            <h1>Cadastro de Supervisor</h1>
             <div class="form-group">
                 <label for="username">Nome de Usuário</label>
                 <input type="text" id="username" name="username" 
@@ -52,58 +52,22 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="endereco">Endereço</label>
-                    <div class="form-row">
-                        <div class="col-3">
-                            <input type="text" class="form-control" name="rua" placeholder="Rua" v-model="rua">
-                        </div>
-                        <div class="col-3">
-                            <input type="text" class="form-control" name="bairro" placeholder="Bairro" v-model="bairro">
-                        </div>    
-                        <div class="col-3">
-                            <input type="text" class="form-control" name="cidade" placeholder="Cidade" v-model="cidade">
-                        </div>    
-                        <div class="col">
-                            <input type="text" class="form-control" name="cep" placeholder="CEP" v-model="cep">
-                        </div>
-                    </div>
-            </div>
             <div class="form-group"> 
-                <label for="instituicao">Instituição</label>
-                    <select class="custom-select" name="instituicao" v-model="instituicao">
-                        <option value="" disabled selected>Selecione uma instituição</option>
-                        <option v-for="inst in instituicoes" :key="inst.id" :value="inst.id">
-                            {{inst.nome}}
+                <label for="empresa">Empresa</label>
+                    <select class="custom-select" name="empresa" v-model="empresa">
+                        <option value="" disabled selected>Selecione uma empresa</option>
+                        <option v-for="emp in empresas" :key="emp.id" :value="emp.id">
+                            {{emp.nome}}
                         </option>
                     </select>
             </div>
             <div class="form-group">
-                <label for="campus">Campus</label>
-                    <select class="custom-select" name="campus" v-model="campus">
-                      <option value="" disabled selected>Selecione um campus</option>
-                        <option v-for="cam in campuses" :key="cam.id" :value="cam.id">
-                            {{cam.nome}}
-                        </option>
-                        
-                    </select>    
-            </div>
-            <div class="form-group"> 
-                <label for="curso">Curso</label>
-                        <select class="custom-select" name="curso" v-model="curso">
-                            <option value="" disabled selected>Selecione um curso</option>
-                                    <option v-for="cur in cursos" :key="cur.id" :value="cur.id">
-                                        {{cur.nome}}
-                            </option>          
-                        </select>
+                <label for="cargo">Cargo</label>
+                <input type="text" class="form-control" name="cargo" v-model="cargo">
             </div>
             <div class="form-group">
-                <label for="semestre">Semestre</label>
-                <input type="text" class="form-control" name="semestre" placeholder="Semestre" v-model="semestre">
-            </div>
-            <div class="form-group">
-                <label for="rga">RGA</label>
-                <input type="text" class="form-control" name="rga" placeholder="Ex. 201505100078" v-model="rga">
+                <label for="area">Área</label>
+                <input type="text" class="form-control" name="area" v-model="area">
             </div>
             <button @click.prevent="register" type="submit" class="btn btn-primary">Cadastrar</button>
             <router-link to="/dashboard" class="btn btn-danger">Cancelar</router-link>
@@ -128,22 +92,14 @@
                 nascimento: '',
                 cpf: '',
                 rg: '',
-                rua: '',
-                bairro: '',
-                cidade: '',
-                cep: '',
                 celular: '',
                 fixo: '',
-                rga: '',
-                semestre: '',
-                curso: '',
-                instituicao: '',
-                campus: '',
-                role: 'ALUNO',
+                area: '',
+                empresa: '',
+                cargo: '',
+                role: 'SUPERVISOR',
                 ////
-                cursos: [],
-                instituicoes: [],
-                campuses: [],
+                empresas: [],
                 ///
                 auth: localStorage.getItem('role')
                 
@@ -152,9 +108,7 @@
         methods: {
             register(){
                 const token = localStorage.getItem('token');
-                axios.post('http://localhost:8000/api/aluno?token=' + token, 
-                //pra autenticar, precisa de mais uma header
-                //essa header só vai dizer pro beck q isso é uma chamada ajax
+                axios.post('http://localhost:8000/api/supervisor?token=' + token, 
                     {
                         username: this.username, 
                         email: this.email, 
@@ -164,17 +118,11 @@
                         nascimento: this.nascimento,
                         cpf: this.cpf,
                         rg: this.rg,
-                        rua: this.rua,
-                        bairro: this.bairro,
-                        cidade: this.cidade,
-                        cep: this.cep,
+                        area: this.area,
                         celular: this.celular,
                         fixo: this.fixo,
-                        rga: this.rga,
-                        semestre: this.semestre,
-                        curso: this.curso,
-                        instituicao: this.instituicao,
-                        campus: this.campus,
+                        cargo: this.cargo,
+                        empresa: this.empresa,
                         role: this.role
                     },
                     {headers: {'X-Requested-With': 'XMLHttpRequest'}})
@@ -193,14 +141,12 @@
                     }
                     
             },
-             //inst, campus, curso
+         
             loadICC(){
                 const token = localStorage.getItem('token');
-                axios.get('http://localhost:8000/api/aluno/create?token=' + token)
+                axios.get('http://localhost:8000/api/supervisor/create?token=' + token)
                     .then(response => {
-                        this.cursos = response.data.cursos
-                        this.campuses = response.data.campuses
-                        this.instituicoes = response.data.instituicoes
+                        this.empresas = response.data.empresas
                         console.log(response)
                     })
                     .catch(
@@ -208,11 +154,7 @@
                     );
             }
         },
-
-        computed: {
-           
-        },
-
+        
         mounted(){
             this.loadICC();
         }

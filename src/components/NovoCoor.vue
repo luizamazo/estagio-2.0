@@ -2,8 +2,45 @@
  <div class="row justify-content-center">
     <div class="col-sm-6">
         <form>
-            <h1>Editar Aluno</h1>
-         
+            <h1>Cadastro de Coordenador</h1>
+            <div class="form-group">
+                <label for="username">Nome de Usuário</label>
+                <input type="text" id="username" name="username" 
+                class="form-control" v-model="username" placeholder="Ex. nome.sobrenome">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" 
+                class="form-control" v-model="email">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" 
+                class="form-control" v-model="password">
+            </div>
+            
+            <hr>
+            
+            <div class="form-group">
+                <label for="nome">Nome Completo</label>
+                <input type="nome" id="nome" name="nome" 
+                class="form-control" v-model="nome">
+            </div>
+        
+            <div class="form-group"> 
+                <label for="nascimento">Data de Nascimento</label>
+                <input type="date" class="form-control" name="nascimento" v-model="nascimento">
+            </div>
+            <div class="form-group"> 
+                <label for="cpf">CPF</label>
+                <input type="text" class="form-control" name="cpf" placeholder="Ex. 999.999.999-99" v-model="cpf">
+            </div>
+            <div class="form-group">
+                <label for="rg">RG</label>
+                <input type="text" class="form-control" name="rg" placeholder="RG" v-model="rg">
+            </div>
             <div class="form-group"> 
                 <label for="telefone">Telefone</label>
                 <div class="form-row">
@@ -14,23 +51,6 @@
                         <input type="text" class="form-control" name="celular" placeholder="Celular" v-model="celular"> 
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="endereco">Endereço</label>
-                    <div class="form-row">
-                        <div class="col-3">
-                            <input type="text" class="form-control" name="rua" placeholder="Rua" v-model="rua">
-                        </div>
-                        <div class="col-3">
-                            <input type="text" class="form-control" name="bairro" placeholder="Bairro" v-model="bairro">
-                        </div>    
-                        <div class="col-3">
-                            <input type="text" class="form-control" name="cidade" placeholder="Cidade" v-model="cidade">
-                        </div>    
-                        <div class="col">
-                            <input type="text" class="form-control" name="cep" placeholder="CEP" v-model="cep">
-                        </div>
-                    </div>
             </div>
             <div class="form-group"> 
                 <label for="instituicao">Instituição</label>
@@ -47,8 +67,7 @@
                       <option value="" disabled selected>Selecione um campus</option>
                         <option v-for="cam in campuses" :key="cam.id" :value="cam.id">
                             {{cam.nome}}
-                        </option>
-                        
+                        </option>    
                     </select>    
             </div>
             <div class="form-group"> 
@@ -61,18 +80,15 @@
                         </select>
             </div>
             <div class="form-group">
-                <label for="semestre">Semestre</label>
-                <input type="text" class="form-control" name="semestre" placeholder="Semestre" v-model="semestre">
+                <label for="cargo">Cargo</label>
+                <input type="text" class="form-control" name="cargo" v-model="cargo">
             </div>
-            <div v-if="auth === 'ADMIN'">
-                <button @click.prevent="editAluno" type="submit" class="btn btn-primary">Salvar</button>
-                <router-link to="{name: ADMDash}" class="btn btn-danger">Cancelar</router-link>
+            <div class="form-group">
+                <label for="siape">SIAPE</label>
+                <input type="text" class="form-control" name="siape" v-model="siape">
             </div>
-            <div v-else-if="auth === 'COORDENADOR'">
-                 <button @click.prevent="editAluno" type="submit" class="btn btn-primary">Salvar</button>
-                <router-link to="{name: COORDash}" class="btn btn-danger">Cancelar</router-link>
-            </div>
-
+            <button @click.prevent="register" type="submit" class="btn btn-primary">Cadastrar</button>
+            <router-link to="/dashboard" class="btn btn-danger">Cancelar</router-link>
         </form>
     </div>
 </div>
@@ -86,16 +102,22 @@
         data(){
             return{
 
-                rua: '',
-                bairro: '',
-                cidade: '',
-                cep: '',
+                username:'',
+                email: '',
+                password: '',
+                ////
+                nome: '',
+                nascimento: '',
+                cpf: '',
+                rg: '',
                 celular: '',
                 fixo: '',
-                semestre: '',
+                siape: '',
                 curso: '',
                 instituicao: '',
                 campus: '',
+                cargo: '',
+                role: 'COORDENADOR',
                 ////
                 cursos: [],
                 instituicoes: [],
@@ -106,27 +128,31 @@
             }
         },
         methods: {
-            editAluno(){
+            register(){
                 const token = localStorage.getItem('token');
-                axios.put('http://localhost:8000/api/aluno/' + this.$route.params.id + '?token=' + token, 
-
+                axios.post('http://localhost:8000/api/coordenador?token=' + token, 
                     {
-                    
-                        rua: this.rua,
-                        bairro: this.bairro,
-                        cidade: this.cidade,
-                        cep: this.cep,
+                        username: this.username, 
+                        email: this.email, 
+                        password: this.password,
+                        ////
+                        nome: this.nome,
+                        nascimento: this.nascimento,
+                        cpf: this.cpf,
+                        rg: this.rg,
+                        siape: this.siape,
                         celular: this.celular,
                         fixo: this.fixo,
-                        semestre: this.semestre,
+                        cargo: this.cargo,
                         curso: this.curso,
                         instituicao: this.instituicao,
-                        campus: this.campus
+                        campus: this.campus,
+                        role: this.role
                     },
                     {headers: {'X-Requested-With': 'XMLHttpRequest'}})
                     .then(
                         (response) => console.log(response),
-                        alert("Editado com sucesso"),
+                        alert("Cadastrado com sucesso"),
                     )
                     .catch(
                         (error) => console.log(this.role)
@@ -134,17 +160,13 @@
 
                     if(this.auth === 'ADMIN'){
                         this.$router.push({ name: 'ADMDash' })
-                    }else if(auth === 'COORDENADOR'){
-                        this.$router.push({ name: 'COORDash' })
                     }
                     
             },
-            
              //inst, campus, curso
-            getEditAluno(){
-                
+            loadICC(){
                 const token = localStorage.getItem('token');
-                axios.get('http://localhost:8000/api/aluno/' + this.$route.params.id + '/edit?token=' + token)
+                axios.get('http://localhost:8000/api/coordenador/create?token=' + token)
                     .then(response => {
                         this.cursos = response.data.cursos
                         this.campuses = response.data.campuses
@@ -157,8 +179,12 @@
             }
         },
 
+        computed: {
+           
+        },
+
         mounted(){
-            this.getEditAluno();
+            this.loadICC();
         }
         
     }

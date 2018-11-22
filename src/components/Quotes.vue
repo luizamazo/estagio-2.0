@@ -39,7 +39,7 @@
                         error => console.log(error)
                     );
             },
-            onQuoteDeleted(id){
+            onQuoteDeleted(value){
                 //vou pegar index do elemento q foi deletado
                 const position = this.quotes.findIndex((element) => {
                     //true or false, é esse o elemento q vc quer ou não? se for igual, manda ele

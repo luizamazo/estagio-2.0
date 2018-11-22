@@ -1,0 +1,135 @@
+<template>
+ <div class="row justify-content-center">
+    <div class="col-sm-6">
+        <form>
+            <h1>Editar Empresa</h1>
+         
+            <div class="form-group">
+                <label for="nome">Razão Social</label>
+                <input type="text" id="nome" name="razaoSocial" 
+                class="form-control" v-model="nome">
+            </div>
+            <div class="form-group">
+                <label for="contato">Ramo</label>
+                <input type="text" class="form-control" name="contato" v-model="contato">
+            </div>
+            <div class="form-group">
+                <label for="contato">Telefone</label>
+                <input type="text" class="form-control" name="contato" v-model="contato">
+            </div>
+             <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" v-model="email">
+            </div>
+            <div class="form-group">
+                <label for="site">Site</label>
+                <input type="text" class="form-control" name="site" v-model="site">
+            </div>
+            <div class="form-group">
+                <label for="endereco">Endereço</label>
+                    <div class="form-row">
+                        <div class="col-3">
+                            <input type="text" class="form-control" name="rua" placeholder="Rua" v-model="rua">
+                        </div>
+                        <div class="col-3">
+                            <input type="text" class="form-control" name="bairro" placeholder="Bairro" v-model="bairro">
+                        </div>    
+                        <div class="col-3">
+                            <input type="text" class="form-control" name="cidade" placeholder="Cidade" v-model="cidade">
+                        </div>    
+                        <div class="col">
+                            <input type="text" class="form-control" name="cep" placeholder="CEP" v-model="cep">
+                        </div>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="representante">Representante</label>
+                <input type="text" class="form-control" name="representante" placeholder="Representante" v-model="representante">
+            </div>
+            <div v-if="auth === 'ADMIN'">
+                <button @click.prevent="editEmpresa" type="submit" class="btn btn-primary">Salvar</button>
+                <router-link to="{name: ADMDash}" class="btn btn-danger">Cancelar</router-link>
+            </div>
+            <div v-else-if="auth === 'COORDENADOR'">
+                 <button @click.prevent="editEmpresa" type="submit" class="btn btn-primary">Salvar</button>
+                <router-link to="{name: COORDash}" class="btn btn-danger">Cancelar</router-link>
+            </div>
+
+        </form>
+    </div>
+</div>
+</template>
+
+<script>
+  import axios from 'axios';
+
+    export default {
+    
+        data(){
+            return{
+
+                representante: '',
+                ramo: '',
+                nome: '',
+                contato: '',
+                email: '',
+                site: '',
+                rua: '',
+                bairro: '',
+                cidade: '',
+                cep: '',
+                ///
+                auth: localStorage.getItem('role')
+                
+            }
+        },
+        methods: {
+            editInstituicao(){
+                const token = localStorage.getItem('token');
+                axios.put('http://localhost:8000/api/empresa/' + this.$route.params.id + '?token=' + token, 
+
+                    {
+                    
+                        nome: this.nome,
+                        contato: this.contato,
+                        email: this.email,
+                        site: this.site,
+                        rua: this.rua,
+                        bairro: this.bairro,
+                        cidade: this.cidade,
+                        cep: this.cep
+                        
+                    },
+                    {headers: {'X-Requested-With': 'XMLHttpRequest'}})
+                    .then(
+                        (response) => console.log(response),
+                        alert("Editado com sucesso"),
+                    )
+                    .catch(
+                        (error) => console.log(this.role)
+                    );
+
+                    if(this.auth === 'ADMIN'){
+                        this.$router.push({ name: 'ADMDash' })
+                    }else if(auth === 'COORDENADOR'){
+                        this.$router.push({ name: 'COORDash' })
+                    }
+                    
+            },
+   
+            getEditInstituicao(){
+                
+                const token = localStorage.getItem('token');
+                axios.get('http://localhost:8000/api/empresa/create?token=' + token)
+                    .then(response => {
+                        console.log(response)
+                    })
+                    .catch(
+                        error => console.log(error)
+                    );
+            }
+        },
+
+    
+    }
+</script>
