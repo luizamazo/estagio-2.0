@@ -8,6 +8,7 @@
                     <p>Data de Início do Estágio: {{soli.estagioInicio | dateFormat}}</p>
                     <p>Data de Encerramento do Estágio: {{soli.estagioFinal | dateFormat}}</p>
                     <p>Planejamento de Tarefas: {{soli.tarefas}}</p>
+                    <p>Carga Horária: {{soli.carga}}</p>
                 
                     <div>
                         <button @click="onAcceptRequest(soli.id)" class="btn btn-sm btn-success">Aprovar</button>
