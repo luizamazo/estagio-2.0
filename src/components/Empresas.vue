@@ -2,10 +2,10 @@
 
     <div class="row">
         <div class="col-md-12">
-                <div class="panel panel-default">
+                <div class="panel panel-default" id="caixa4">
                 <div class="panel-body">
                    <div class="table-responsive-md">
-                       <h3>Empresas Cadastradas</h3>
+                       <h3><center>Empresas Cadastradas</center></h3>
                         <table class="table text-center" v-if="empresas.length > 0">
                         <thead>
                             <tr>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="panel-footer">
                     <router-link to="/nova-empresa" 
-                        tag="button" class="btn btn-success btn-lg">Adicionar Nova Empresa</router-link>
+                        tag="button" class="btn btn-success btn-lg btn-block">Adicionar Nova Empresa</router-link>
                 </div>               
             </div>
         </div>
@@ -106,4 +106,11 @@
         }
     }
 </script>
+<style>
+  #caixa4{
+    width: 26%;
+    height: 90px;
+    margin-left: 35%;
+  }
+ </style>
 

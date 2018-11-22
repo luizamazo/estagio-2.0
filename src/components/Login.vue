@@ -1,8 +1,8 @@
 <template>
 
 <div class="row justify-content-center" >
-    <img src="/img/images.png" alt="Usuario">
-    <div class="col-sm-3">
+    <img src="/img/images.png" alt="Usuario" id="login-esp">
+    <div class="col-sm-3" id="login-esp">
         <form>
             <div class="form-group">
                 <label for="email">Email</label>
@@ -96,5 +96,13 @@ localStorage.setItem('token', token);
 //não é o decrypted é o raw mesmo
 */
 </script>
+<style>
+#login-esp{
+    margin-top: 13%;
+    margin-left: 40px;
+    
+}
+</style>
+
 
 
