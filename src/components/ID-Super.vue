@@ -19,7 +19,7 @@
         </div>
         <div class="panel-footer">
                     <router-link to="/supervisores" 
-                        tag="button" class="btn btn-sm btn-danger btn-block">Voltar</router-link>
+                        tag="button" class="btn btn-lg btn-danger">Voltar</router-link>
         </div>   
         
     </div>

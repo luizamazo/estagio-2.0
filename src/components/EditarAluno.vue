@@ -65,11 +65,11 @@
                 <input type="text" class="form-control" name="semestre" placeholder="Semestre" v-model="semestre">
             </div>
             <div v-if="auth === 'ADMIN'">
-                <button @click.prevent="editAluno" type="submit" class="btn btn-primary">Salvar</button>
+                <button @click.prevent="editAluno" type="submit" class="btn btn-success">Salvar</button>
                 <router-link to="{name: ADMDash}" class="btn btn-danger">Cancelar</router-link>
             </div>
             <div v-else-if="auth === 'COORDENADOR'">
-                 <button @click.prevent="editAluno" type="submit" class="btn btn-primary">Salvar</button>
+                 <button @click.prevent="editAluno" type="submit" class="btn btn-success">Salvar</button>
                 <router-link to="{name: COORDash}" class="btn btn-danger">Cancelar</router-link>
             </div>
 

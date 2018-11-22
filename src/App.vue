@@ -3,7 +3,7 @@
     <div class="container ">
         <div class="row">
           <div class="col-sm-12">
-           <h1> {{username}}</h1>
+           <h1> {{username}}{role}}</h1>
             <router-link to="/login">Login</router-link> |
             <router-link to="/novo-aluno">Register</router-link> |
             <router-link to="/logout">Logout</router-link> 

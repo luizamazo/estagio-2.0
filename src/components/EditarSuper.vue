@@ -33,11 +33,11 @@
                 <input type="text" class="form-control" name="area"  v-model="area">
             </div>
             <div v-if="auth === 'ADMIN'">
-                <button @click.prevent="editCoordenador" type="submit" class="btn btn-primary">Salvar</button>
+                <button @click.prevent="editCoordenador" type="submit" class="btn btn-success">Salvar</button>
                 <router-link to="{name: ADMDash}" class="btn btn-danger">Cancelar</router-link>
             </div>
             <div v-else-if="auth === 'COORDENADOR'">
-                 <button @click.prevent="editCoordenador" type="submit" class="btn btn-primary">Salvar</button>
+                 <button @click.prevent="editCoordenador" type="submit" class="btn btn-success">Salvar</button>
                 <router-link to="{name: COORDash}" class="btn btn-danger">Cancelar</router-link>
             </div>
 
